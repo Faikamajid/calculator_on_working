@@ -1,0 +1,265 @@
+<html>
+<head>
+<h1 align=center >CALCULATOR</h1>
+
+<style>
+.text{
+border-color:#FFDAB9;
+height:60px;
+width:255px;
+font-size:18pt;
+}
+
+.back{
+background-color:#FFDAB9;
+color:black; 
+border:none;
+padding:5px;
+height:40px;
+width:122px;
+font-family:"Times  New Roman";
+font-size:20px;
+}
+
+.btn2{
+background-color:#FFDAB9;
+color:black; 
+border:none;
+padding:5px;
+height:55px;
+width:250px;
+font-family:"Times  New Roman";
+font-size:40px;}
+
+.btn1{
+background-color:#FFDAB9;
+color:black; 
+border:none;
+padding:5px;
+height:40px;
+width:60px;
+font-family:"Times  New Roman";
+font-size:20px;}
+
+div{
+background-color: #F08080;
+width:19%;
+margin:0 auto;
+padding:20px;
+}
+
+
+</style>
+</head>
+<title>my calculator</title>
+<body>
+<div  class="divi">
+<input  maxlength="8"  align="center" type="text"  class="text" onclick="syntax()" id="textbox"><br>
+<!--<input  maxlength="8"  align="center" type="text"  onclick="syntax()" class="text2" id="textbox2"><br> -->
+<span id="spnError" style="color: black; display: none">*Valid characters: Numbers and special characters.</span>
+<table>
+<tr class="row1" >
+<td> <button class="btn1"  value="Clear All" onclick="textbox.value = ' ' ">C</button></td>
+<td> <button  class="btn1"  value="/"  onclick="fundivid()">/</button></td>
+<td> <button class="btn1"  value="*"  onclick="funinto()">*</button></td>
+<td> <button class="btn1"  value="+"  onclick="funplus()">+</button></td>
+</tr>
+<tr class="row1" >
+<td> <button class="btn1"  value="7"  onclick="textbox.value += '7' ">7</button></td>
+<td> <button  class="btn1"  value="8"  onclick="textbox.value += '8' ">8</button></td>
+<td> <button class="btn1"  value="9"  onclick="textbox.value += '9' ">9</button></td>
+<td> <button class="btn1" value="-"  onclick="funminus()">-</button></td>
+</tr>
+<tr class="row1" >
+<td> <button class="btn1"   value="4"  onclick="textbox.value += '4' ">4</button></td>
+<td> <button  class="btn1"  value="5"  onclick="textbox.value += '5' ">5</button></td>
+<td> <button class="btn1"   value="6"  onclick="textbox.value += '6' ">6</button></td>
+<td> <button class="btn1"   value="."  onclick="fundot()">.</button></td>
+</tr>
+<tr  class="row1" >
+<td> <button class="btn1"   value="1"  onclick="textbox.value += '1' ">1</button></td>
+<td> <button  class="btn1"  value="2"  onclick="textbox.value += '2' ">2</button></td>
+<td> <button class="btn1"   value="3"  onclick="textbox.value += '3' ">3</button></td>
+<td> <button  class="btn1"  value="0"  onclick="textbox.value += '0' ">0</button></td>
+</tr>
+
+<tr>
+<td> <button  class="btn1" id="sqrt"   onclick="funsqrt(textbox.value)">Sqrt</button></td>
+<td> <button  class="btn1" id="sin"   onclick="funsin(textbox.value)">Sin</button></td>
+<th colspan="2"> <button class="back" id="back"   onclick="funlastout()">CE</button></th>
+</tr>
+
+<tr>
+<th colspan="4"><button value="=" class="btn2" onclick="funequal()">=</button></th>
+</table>
+</div>
+<script>
+function syntax()
+{
+var isValid = false;
+        var regex = /^[0-9-+()]*$/;
+        isValid = regex.test(document.getElementById("textbox2").value);
+        document.getElementById("spnError").style.display = !isValid ? "block" : "none";
+        return isValid;
+}
+
+
+function funlastout()
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+}
+function funsqrt(x)
+{
+p=Math.sqrt(x);
+document.getElementById("textbox").value=p;
+}
+function funsin(x)
+{
+p=Math.sin(x);
+document.getElementById("textbox").value=p;
+}
+
+function funplus()
+{
+var text=document.getElementById("textbox").value;
+var len=text.length -1;
+if(text.charAt(text.length -1)== '+')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '+';
+}
+else if(document.getElementById("textbox").value == " ")
+{
+document.getElementById("textbox").value += '';
+}
+else if(text.charAt(text.length -1)== '*' || text.charAt(text.length -1)== '-' || text.charAt(text.length -1)== '/')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '+';
+}
+else
+{
+document.getElementById("textbox").value += '+';
+}
+}
+
+function funinto()
+{
+var text=document.getElementById("textbox").value;
+var len=text.length -1;
+if(text.charAt(text.length -1)== '*')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '*';
+}
+else if(document.getElementById("textbox").value == " ")
+{
+document.getElementById("textbox").value += '';
+}
+else if(text.charAt(text.length -1)== '-' || text.charAt(text.length -1)== '+' || text.charAt(text.length -1)== '/')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '*';
+}
+else
+{
+document.getElementById("textbox").value += '*';
+}
+}
+
+
+function funminus()
+{
+var text=document.getElementById("textbox").value;
+var len=text.length -1;
+if(text.charAt(text.length -1)== '-')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '-';
+}
+else if(document.getElementById("textbox").value == " ")
+{
+document.getElementById("textbox").value += '';
+}
+else if(text.charAt(text.length -1)== '+' || text.charAt(text.length -1)== '*' || text.charAt(text.length -1)== '/')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '-';
+}
+else
+{
+document.getElementById("textbox").value += '-';
+}
+}
+
+
+
+
+function fundivid()
+{
+var text=document.getElementById("textbox").value;
+var len=text.length -1;
+if(text.charAt(text.length -1)== '/')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '/';
+}
+else if(document.getElementById("textbox").value == " ")
+{
+document.getElementById("textbox").value += '';
+}
+else if(text.charAt(text.length -1)== '+' || text.charAt(text.length -1)== '*' || text.charAt(text.length -1)== '-')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '/';
+}
+else
+{
+document.getElementById("textbox").value += '/';
+}
+}
+
+
+
+
+function funequal()
+{
+if(document.getElementById("textbox").value == " ")
+{
+document.getElementById("textbox").value += '';
+}
+else
+{
+document.getElementById("textbox").value=eval(textbox.value);
+}
+
+}
+
+
+
+function fundot()
+{
+var text=document.getElementById("textbox").value;
+var len=text.length -1;
+if(text.charAt(text.length -1)== '.')
+{
+var value=document.getElementById("textbox").value;
+document.getElementById("textbox").value=value.substr(0,value.length - 1);
+document.getElementById("textbox").value += '.';
+}
+else 
+document.getElementById("textbox").value +='.';
+}
+</script>
+
+</body>
+</html>
