@@ -1,6 +1,6 @@
 <html>
 <head>
-<h1 align=center >CALCULATOR</h1>
+<h1 align=left > &nbsp  &nbsp &nbsp CALCULATOR.</h1>
 
 <style>
 .text{
@@ -43,7 +43,8 @@ font-size:20px;}
 
 div{
 background-color: #F08080;
-width:19%;
+width:30%;
+height:100%
 margin:0 auto;
 padding:20px;
 }
@@ -51,10 +52,10 @@ padding:20px;
 
 </style>
 </head>
-<title>Calculator</title>
+<title>my calculator</title>
 <body>
 <div  class="divi">
-<input readonly maxlength="8"  align="center" type="text"  class="text" onclick="syntax()" id="textbox"><br>
+<input readonly  maxlength="8"  align="center" type="text"  class="text" onclick="syntax()" id="textbox"><br>
 <!--<input  maxlength="8"  align="center" type="text"  onclick="syntax()" class="text2" id="textbox2"><br> -->
 <span id="spnError" style="color: black; display: none">*Valid characters: Numbers and special characters.</span>
 <table>
@@ -246,6 +247,7 @@ document.getElementById("textbox").value=eval(textbox.value);
 
 
 
+
 function fundot()
 {
 var text=document.getElementById("textbox").value;
@@ -258,7 +260,7 @@ document.getElementById("textbox").value += '.';
 }
 else 
 document.getElementById("textbox").value +='.';
-}  
+}
 </script>
 
 </body>
